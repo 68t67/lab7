@@ -6,20 +6,16 @@ $password = "0086";
 try {
     $pdo = new PDO($dsn, $user, $password);
 
-    // Пример сложного запроса
     $query = "SELECT u.name, SUM(o.amount) AS total_amount
               FROM users u
               JOIN orders o ON u.id = o.user_id
               GROUP BY u.name";
 
-    // Используем EXPLAIN для анализа
     $explainQuery = "EXPLAIN ANALYZE " . $query;
 
-    // Выполнение запроса EXPLAIN
     $stmt = $pdo->query($explainQuery);
     $explainResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Выполнение основного запроса
     $stmt = $pdo->query($query);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
