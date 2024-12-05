@@ -1,0 +1,20 @@
+language: php
+
+php:
+  - '7.4'        # Укажите версию PHP, которую вы хотите использовать
+  - '8.0'
+  - '8.1'
+
+install:
+  - composer install  # Установите зависимости с помощью Composer
+
+script:
+  - vendor/bin/phpunit  # Запустите тесты PHPUnit
+
+# Опционально: Настройка уведомлений
+notifications:
+  email:
+    recipients:
+      - maksimkorhov9@gmail.com
+    on_success: always
+    on_failure: always
